@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Number Game</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #3498db, #8e44ad);
+      font-family: 'Arial', sans-serif;
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .game-container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      background-color: #1abc9c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #16a085;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .attempts {
+      font-size: 18px;
+      margin-top: 15px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      font-style: italic;
+      color: #ddd;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="game-container">
+  <h1>Guess the Number</h1>
+  <p>Try to guess the number between 1 and 100!</p>
+  <input type="number" id="guess" min="1" max="100" placeholder="Enter your guess">
+  <button onclick="checkGuess()">Guess</button>
+
+  <div class="message" id="message"></div>
+  <div class="attempts" id="attempts"></div>
+
+  <div class="footer">
+    <p>Worked By: Edaso Guja </p>
+    <p>Arsi University</p>
+  </div>
+</div>
+
+<script>
+  const randomNumber = Math.floor(Math.random() * 100) + 1;
+  let attempts = 0;
+
+  function checkGuess() {
+    const guess = document.getElementById('guess').value;
+    const message = document.getElementById('message');
+    const attemptsDisplay = document.getElementById('attempts');
+    attempts++;
+
+    if (guess < 1 || guess > 100) {
+      message.textContent = "Please enter a number between 1 and 100.";
+      return;
+    }
+
+    if (guess == randomNumber) {
+      message.textContent = `Congratulations! You guessed the number in ${attempts} attempts.`;
+      attemptsDisplay.textContent = "";
+    } else if (guess < randomNumber) {
+      message.textContent = "Too low! Try again.";
+    } else {
+      message.textContent = "Too high! Try again.";
+    }
+
+    attemptsDisplay.textContent = `Attempts: ${attempts}`;
+  }
+</script>
+
+</body>
+</html>
